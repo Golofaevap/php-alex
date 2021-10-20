@@ -51,7 +51,7 @@ $key = '868a3b61c4a00f26ae1f61ded43a415075e75978354205';
 $domain = 'offerrum.com';
 
 $url = "https://api.{$domain}/webmaster/order/?key={$key}&flow={$flow}&subid={$subid}";
-error_log($url)
+error_log($url);
 
 if (function_exists('curl_init') && $ch = curl_init()) {
     error_log("cond 1");
