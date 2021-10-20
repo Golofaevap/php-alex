@@ -33,6 +33,7 @@ $infoData = [
     'order_time' => time(),             // timestamp времени заказа
 ];
 
+echo $infoData;
 
 // id потока, например bakm
 $flow = 'Ca6y';
@@ -47,8 +48,10 @@ $key = '868a3b61c4a00f26ae1f61ded43a415075e75978354205';
 $domain = 'offerrum.com';
 
 $url = "https://api.{$domain}/webmaster/order/?key={$key}&flow={$flow}&subid={$subid}";
+echo "URL TO SEND: ", $url;
 
 if (function_exists('curl_init') && $ch = curl_init()) {
+    echo "cond 1";
     curl_setopt($ch, CURLOPT_URL, $url);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_POST, true);
@@ -59,6 +62,7 @@ if (function_exists('curl_init') && $ch = curl_init()) {
     curl_close($ch);
 }
 else {
+    echo "cond 2";
     $result = file_get_contents(
         $url,
         false,
