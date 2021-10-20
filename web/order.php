@@ -1,7 +1,7 @@
 <?php
-error_reporting(E_ALL);
-ini_set("display_errors", 1);
-error_log("Your message here");
+
+error_log("hello, this is a test!");
+
 
 if (isset($_SERVER['HTTP_CF_CONNECTING_IP']) && filter_var($_SERVER['HTTP_CF_CONNECTING_IP'], FILTER_VALIDATE_IP, FILTER_FLAG_IPV4)) {
     $userIp = $_SERVER['HTTP_CF_CONNECTING_IP'];
