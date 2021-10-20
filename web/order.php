@@ -9,6 +9,10 @@ if (isset($_SERVER['HTTP_CF_CONNECTING_IP']) && filter_var($_SERVER['HTTP_CF_CON
 elseif (isset($_SERVER['HTTP_X_REAL_IP']) && filter_var($_SERVER['HTTP_X_REAL_IP'], FILTER_VALIDATE_IP, FILTER_FLAG_IPV4)) {
     $userIp = $_SERVER['HTTP_X_REAL_IP'];
 }
+elseif(isset($_SERVER['HTTP_X_FORWARDED_FOR']) && filter_var($_SERVER['HTTP_X_FORWARDED_FOR'], FILTER_VALIDATE_IP, FILTER_FLAG_IPV4)){
+    $ipAddresses = explode(',', $_SERVER['HTTP_X_FORWARDED_FOR']);
+    $userIp = trim(end($ipAddresses));
+}
 else {
     $userIp = $_SERVER['REMOTE_ADDR'];
 }
@@ -36,7 +40,7 @@ $infoData = [
     'order_time' => time(),             // timestamp времени заказа
 ];
 
-error_log($infoData);
+error_log(implode(" ",$infoData));
 
 // id потока, например bakm
 $flow = 'Ca6y';
